@@ -1,5 +1,6 @@
 import { Droplets, Wind, Eye, Gauge } from "lucide-react";
 import "bootstrap/dist/css/bootstrap.min.css";
+
 const Temp = ({
   city,
   country,
@@ -27,7 +28,7 @@ const Temp = ({
             <p className="lead">{country}</p>
           </div>
 
-          {icon}
+          {icon} {/* هنا سيتم عرض الأيقونة التي تم تمريرها من صفحة Home */}
         </div>
         <div className="d-flex align-items-end mb-4">
           <span className="display-1 fw-bold">{temperature}°</span>
@@ -105,4 +106,5 @@ const Temp = ({
     </div>
   );
 };
+
 export default Temp;

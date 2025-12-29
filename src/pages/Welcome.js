@@ -2,12 +2,14 @@ import backgrd from "../assets/images/backgrd.png";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import { useNavigate } from "react-router-dom";
+
 const Welcome = () => {
   const navigate = useNavigate();
 
-  const handleSelectCountry = (country) => {
-    navigate("/home", { state: { country } });
+  const handleSelectCountry = (countryCode) => {
+    navigate("/home", { state: { country: countryCode } });
   };
+
   return (
     <div
       style={{
@@ -17,39 +19,33 @@ const Welcome = () => {
         width: "100%",
         height: "100vh",
       }}
-      className="d-flex justify-content-center align-item-center flex-column text-center"
+      className="d-flex justify-content-center align-items-center flex-column text-center"
     >
-      <div style={{ color: "#001f3f", fontWeight: "bold" }} className="mb-3">
-        <h1 style={{ fontSize: "5rem" }}>Welcome To Weather App</h1>
-        <h3>Enter a Country name to get started</h3>
+      <div style={{ color: "#001f3f", fontWeight: "bold" }} className="mb-4">
+        <h1 style={{ fontSize: "4.5rem" }}>Welcome To Weather App</h1>
+        <h3>Choose a country to get started</h3>
       </div>
+
       <div className="dropdown">
         <button
-          className="btn  dropdown-toggle text-white p-2"
+          className="btn dropdown-toggle text-white p-3"
           type="button"
-          id="dropdownMenuButton1"
           data-bs-toggle="dropdown"
-          aria-expanded="false"
           style={{
             backgroundColor: "#001f3f",
-            width: "30%",
+            width: "300px",
             fontSize: "1.2rem",
-            borderRadius:"20px",
+            borderRadius: "20px",
           }}
         >
-          Choose One
+          Choose Country
         </button>
-        <ul
-          className="dropdown-menu "
-          aria-labelledby="dropdownMenuButton1"
-          style={{ width: "30%" }}
-        >
+
+        <ul className="dropdown-menu" style={{ width: "300px" }}>
           <li>
             <button
               className="dropdown-item"
-              style={{ color: "#001f3f" }}
-              to="/home"
-              onClick={() => handleSelectCountry("Lebanon")}
+              onClick={() => handleSelectCountry("LB")}
             >
               Lebanon
             </button>
@@ -57,9 +53,7 @@ const Welcome = () => {
           <li>
             <button
               className="dropdown-item"
-              style={{ color: "#001f3f" }}
-              to="/home"
-              onClick={() => handleSelectCountry("Syria")}
+              onClick={() => handleSelectCountry("SY")}
             >
               Syria
             </button>
@@ -67,9 +61,7 @@ const Welcome = () => {
           <li>
             <button
               className="dropdown-item"
-              style={{ color: "#001f3f" }}
-              to="/home"
-              onClick={() => handleSelectCountry("Palestine")}
+              onClick={() => handleSelectCountry("PS")}
             >
               Palestine
             </button>
@@ -77,11 +69,57 @@ const Welcome = () => {
           <li>
             <button
               className="dropdown-item"
-              style={{ color: "#001f3f" }}
-              to="/home"
-              onClick={() => handleSelectCountry("Turkiye")}
+              onClick={() => handleSelectCountry("TR")}
             >
               Turkiye
+            </button>
+          </li>
+          <li>
+            <button
+              className="dropdown-item"
+              onClick={() => handleSelectCountry("IT")}
+            >
+              Italy
+            </button>
+          </li>
+          <li>
+            <button
+              className="dropdown-item"
+              onClick={() => handleSelectCountry("FR")}
+            >
+              France
+            </button>
+          </li>
+          <li>
+            <button
+              className="dropdown-item"
+              onClick={() => handleSelectCountry("DE")}
+            >
+              Germany
+            </button>
+          </li>
+          <li>
+            <button
+              className="dropdown-item"
+              onClick={() => handleSelectCountry("US")}
+            >
+              United States
+            </button>
+          </li>
+          <li>
+            <button
+              className="dropdown-item"
+              onClick={() => handleSelectCountry("AU")}
+            >
+              Australia
+            </button>
+          </li>
+          <li>
+            <button
+              className="dropdown-item"
+              onClick={() => handleSelectCountry("RU")}
+            >
+              Russia
             </button>
           </li>
         </ul>
@@ -89,4 +127,5 @@ const Welcome = () => {
     </div>
   );
 };
+
 export default Welcome;
