@@ -10,18 +10,13 @@ const Days = ({ Days }) => {
           borderRadius: "15px",
         }}
       >
-        {/* اليوم */}
         <div className="fw-semibold" style={{ width: "120px" }}>
           {Days.Day}
         </div>
-
-        {/* الأيقونة والوصف */}
         <div className="d-flex align-items-center justify-content-center flex-grow-1 gap-3">
           {Days.Icon}
           <span className="text-capitalize">{Days.Condition}</span>
         </div>
-
-        {/* الحرارة (العظمى / الصغرى) */}
         <div className="d-flex gap-3" style={{ minWidth: "80px", justifyContent: "flex-end" }}>
           <span className="fw-bold">{Days.TemperatureMorning}</span>
           <span className="text-white-50">{Days.TemperatureNight}</span>

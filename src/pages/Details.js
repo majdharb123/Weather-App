@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useLocation, Link } from "react-router-dom";
-// Video Imports
+
 import MoonVideo from "../assets/Videos/moon.mp4";
 import SunVideos from "../assets/Videos/sunVideos.mp4";
 import Rain1 from "../assets/Videos/rain1.mp4";
@@ -8,7 +8,6 @@ import Rain2 from "../assets/Videos/rain2.mp4";
 import Thunder1 from "../assets/Videos/thunder1.mp4";
 import Thunder2 from "../assets/Videos/thunder2.mp4";
 
-// Recharts Imports
 import {
   ResponsiveContainer,
   AreaChart,
@@ -49,7 +48,6 @@ const Details = () => {
 
       if (data.weather) {
         setCurrent(data);
-        // تحديث الفيديو بناءً على الطقس والوقت
         updateBackgroundVideo(
           data.weather[0].main,
           data.sys.sunrise,
@@ -85,7 +83,6 @@ const Details = () => {
     }
   };
 
-  // ✅ منطق الفيديو المحسن (نفس منطق الصفحة الرئيسية)
   const updateBackgroundVideo = (weather, sunrise, sunset) => {
     const currentTime = new Date().getTime() / 1000;
     const isDay = currentTime >= sunrise && currentTime <= sunset;
@@ -110,7 +107,6 @@ const Details = () => {
       return;
     }
 
-    // Default Fallback
     setWeatherVideo(isDay ? SunVideos : MoonVideo);
   };
 
@@ -127,15 +123,12 @@ const Details = () => {
       >
         <Link
           to="/home"
-          state={{ country: country, city: city }} // الحفاظ على المدينة عند الرجوع
+          state={{ country: country, city: city }}
           className="text-decoration-none text-black"
         >
           ← Back to Home
         </Link>
       </button>
-
-      {/* ✅ استبدلنا المكون Custom بالفيديو المباشر مع خاصية key */}
-      {/* الـ key ضروري جداً ليعرف المتصفح إنه لازم يغير الفيديو */}
       <video
         key={weatherVideo}
         autoPlay
@@ -154,8 +147,6 @@ const Details = () => {
       >
         <source src={weatherVideo} type="video/mp4" />
       </video>
-
-      {/* طبقة شفافة فوق الفيديو لجمالية النص */}
       <div
         style={{
           position: "fixed",
@@ -249,9 +240,7 @@ const Details = () => {
                   style={{ background: "rgba(255,255,255,0.10)" }}
                 >
                   <span className="fs-5 opacity-75">Wind</span>
-                  <span className="fs-4 fw-bold">
-                    {current.wind.speed} m/s
-                  </span>
+                  <span className="fs-4 fw-bold">{current.wind.speed} m/s</span>
                 </div>
                 <div
                   className="d-flex justify-content-between align-items-center p-3 rounded-3 mb-3"
@@ -266,7 +255,6 @@ const Details = () => {
             </div>
           </div>
 
-          {/* Temperature Chart */}
           <div
             className="bg-white bg-opacity-10 backdrop-blur-lg rounded-4 p-4 p-md-5 mb-4 shadow-lg text-white"
             style={{
@@ -289,11 +277,7 @@ const Details = () => {
                       x2="0"
                       y2="1"
                     >
-                      <stop
-                        offset="5%"
-                        stopColor="#fbbf24"
-                        stopOpacity={0.8}
-                      />
+                      <stop offset="5%" stopColor="#fbbf24" stopOpacity={0.8} />
                       <stop
                         offset="95%"
                         stopColor="#fbbf24"
@@ -337,7 +321,6 @@ const Details = () => {
           </div>
 
           <div className="row g-4 mb-4">
-            {/* Humidity Chart */}
             <div className="col-12 col-md-6">
               <div
                 className="bg-white bg-opacity-10 backdrop-blur-lg rounded-4 p-4 p-md-5 shadow-lg h-100"
@@ -377,8 +360,6 @@ const Details = () => {
                 </div>
               </div>
             </div>
-
-            {/* Wind Speed Chart */}
             <div className="col-12 col-md-6">
               <div
                 className="bg-white bg-opacity-10 backdrop-blur-lg rounded-4 p-4 p-md-5 shadow-lg h-100"

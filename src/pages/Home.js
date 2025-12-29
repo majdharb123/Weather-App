@@ -40,12 +40,9 @@ const defaultCities = {
 
 const Home = () => {
   const location = useLocation();
-
-  // منجيب البلد والمدينة (اذا وجدت) من الرابط
   const country = location.state?.country || "LB";
-  const incomingCity = location.state?.city; // المدينة القادمة من صفحة Details
+  const incomingCity = location.state?.city; 
 
-  // 1. التعديل الأول: القيمة الأولية بتشوف اذا في مدينة جاية، اذا لا بتاخد الافتراضية
   const [city, setCity] = useState(incomingCity || defaultCities[country]);
 
   const [current, setCurrent] = useState(null);
@@ -54,10 +51,8 @@ const Home = () => {
   const [video, setVideo] = useState(SunVideos);
   const [searchTrigger, setSearchTrigger] = useState(false);
 
-  // 2. التعديل الثاني: منع إعادة تعيين المدينة إذا كنا راجعين من Details
+
   useEffect(() => {
-    // فقط إذا ما في مدينة جاية بالرابط (يعني جايين من Welcome مش من Details)
-    // منرجع للمدينة الافتراضية
     if (!incomingCity) {
       setCity(defaultCities[country]);
     }
@@ -66,7 +61,7 @@ const Home = () => {
   useEffect(() => {
     fetchCurrentWeather();
     fetchForecast();
-  }, [searchTrigger, country, city]); // city is a dependency here
+  }, [searchTrigger, country, city]); 
 
   const fetchCurrentWeather = async () => {
     try {
@@ -83,58 +78,6 @@ const Home = () => {
     }
   };
 
-  // const fetchForecast = async () => {
-  //   try {
-  //     const res = await fetch(
-  //       `https://api.openweathermap.org/data/2.5/forecast?q=${city},${country}&units=metric&appid=${API_KEY}`
-  //     );
-  //     const data = await res.json();
-  //     if (!data.list) return;
-
-  //     const filteredHourly = data.list.filter((item) => {
-  //       const date = new Date(item.dt_txt);
-  //       return date > new Date();
-  //     });
-
-  //     const formattedHourly = filteredHourly.slice(0, 8).map((h) => {
-  //       const date = new Date(h.dt_txt);
-  //       return {
-  //         ...h,
-  //         formattedTime: date.toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit" }),
-  //       };
-  //     });
-  //     setHourly(formattedHourly);
-
-  //     const dailyMap = {};
-  //     data.list.forEach((reading) => {
-  //       const dateStr = reading.dt_txt.split(" ")[0];
-  //       if (!dailyMap[dateStr]) {
-  //         dailyMap[dateStr] = {
-  //           dt_txt: reading.dt_txt,
-  //           weather: reading.weather,
-  //           min: reading.main.temp_min,
-  //           max: reading.main.temp_max
-  //         };
-  //       } else {
-  //         dailyMap[dateStr].min = Math.min(dailyMap[dateStr].min, reading.main.temp_min);
-  //         dailyMap[dateStr].max = Math.max(dailyMap[dateStr].max, reading.main.temp_max);
-  //       }
-  //     });
-
-  //     const todayDate = new Date().getDate();
-  //     const processedDaily = Object.values(dailyMap)
-  //       .filter(day => {
-  //           const dayDate = new Date(day.dt_txt).getDate();
-  //           return dayDate !== todayDate;
-  //       })
-  //       .slice(0, 5);
-
-  //     setDaily(processedDaily);
-  //   } catch (error) {
-  //     console.error("Error fetching forecast:", error);
-  //   }
-  // };
-
   const fetchForecast = async () => {
     try {
       const res = await fetch(
@@ -142,11 +85,9 @@ const Home = () => {
       );
       const data = await res.json();
       if (!data.list) return;
-
-      // فلترة الساعات (Hourly) للساعات القادمة فقط
       const filteredHourly = data.list.filter((item) => {
         const date = new Date(item.dt_txt);
-        return date > new Date(); // استبعاد الساعات التي مرت
+        return date > new Date(); 
       });
 
       const formattedHourly = filteredHourly.slice(0, 8).map((h) => {
@@ -160,8 +101,6 @@ const Home = () => {
         };
       });
       setHourly(formattedHourly);
-
-      // فلترة الأيام (Daily) لتضمين 5 أيام فقط بعد اليوم الحالي
       const dailyMap = {};
 
       data.list.forEach((reading) => {
@@ -186,18 +125,13 @@ const Home = () => {
         }
       });
 
-      // تحديد اليوم الحالي
       const todayDate = new Date().toLocaleDateString("en-US");
-
-      // استخراج 5 أيام بدءًا من اليوم التالي
       const processedDaily = Object.values(dailyMap)
         .filter(
           (day) =>
             new Date(day.dt_txt).toLocaleDateString("en-US") !== todayDate
-        ) // استبعاد اليوم الحالي
-        .slice(0, 5); // أخذ 5 أيام فقط بعد اليوم الحالي
-
-      // في حالة الحصول على أقل من 5 أيام، يتم إضافة اليوم الذي يلي آخر يوم متاح
+        ) 
+        .slice(0, 5); 
       if (processedDaily.length < 5) {
         const missingDays = 5 - processedDaily.length;
         const lastDay = new Date(

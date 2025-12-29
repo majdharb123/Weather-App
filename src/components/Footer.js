@@ -1,7 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 
-// 1. لازم تستقبل city و country هون بين القوسين
 const Footer = ({ city, country }) => {
   return (
     <footer className="container footer text-end p-3">
@@ -14,7 +13,6 @@ const Footer = ({ city, country }) => {
           borderRadius: "20px",
         }}
       >
-        {/* 2. لازم تمرر city و country بقلب الـ state */}
         <Link 
           to="/details" 
           state={{ city: city, country: country }} 

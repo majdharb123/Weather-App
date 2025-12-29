@@ -28,7 +28,7 @@ const Temp = ({
             <p className="lead">{country}</p>
           </div>
 
-          {icon} {/* هنا سيتم عرض الأيقونة التي تم تمريرها من صفحة Home */}
+          {icon} 
         </div>
         <div className="d-flex align-items-end mb-4">
           <span className="display-1 fw-bold">{temperature}°</span>

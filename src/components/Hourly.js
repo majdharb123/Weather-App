@@ -8,7 +8,6 @@ const Hourly = ({ Hour }) => {
         minWidth: "80px",
       }}
     >
-      {/* هنا التعديل الأساسي: عرض الوقت بشكل صحيح */}
       <div className="fw-semibold mb-2">{Hour.time}</div>
       
       <div className="d-flex justify-content-center mb-2">{Hour.icon}</div>

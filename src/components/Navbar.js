@@ -21,7 +21,7 @@ const Navbar = ({ onSearch }) => {
         <form
           className="d-flex container"
           style={{ width: "100%" }}
-          onSubmit={handleSubmit} // ربطنا دالة الـ Submit الجديدة
+          onSubmit={handleSubmit}
         >
           <input
             className="form-control me-2 p-2"
@@ -29,7 +29,6 @@ const Navbar = ({ onSearch }) => {
             placeholder="Search"
             aria-label="Search"
             style={{ borderRadius: "20px" }}
-            // 4. ربطنا الـ input بالمتغير عشان نقدر نتحكم فيه
             value={searchText}
             onChange={(e) => setSearchText(e.target.value)}
           />
