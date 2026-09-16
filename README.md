@@ -40,7 +40,7 @@ A dynamic, three-page responsive weather application that provides real-time for
 **Majd Harb**
 * **LinkedIn:** [https://www.linkedin.com/in/majd-harb-cs/]
 * **GitHub:** [https://github.com/majdharb123]
-* **Email:** [majdhaeb37@gmail.com]
+* **Email:** [majdharb37@gmail.com]
 
 ---
 This project was built to demonstrate API integration and dynamic UI development in React.
